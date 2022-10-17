@@ -1,47 +1,77 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { Node } = require('../extensions/list-tree.js');
+const { Node } = require('../extensions/list-tree.js');
 
 /**
 * Implement simple binary search tree according to task description
 * using Node from extensions
 */
 class BinarySearchTree {
+  constructor() {
+    this.droot = null;
+  }
 
   root() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return this.droot;
   }
 
-  add(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  add(data) {
+    this.droot = ad(this.droot, data);
+
+    function ad(b, data) {
+      if (!b) {
+        return new Node(data);
+      } else if (b.data === data) {
+        return b;
+      } else if (data > b.data) {
+        b.right = ad(b.right, data);
+      } else {
+        b.left = ad(b.left, data);
+      }
+
+      return b;
+    }
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    if (!this.droot) {
+      return false;
+    } else {
+      let current = this.droot;
+
+      while (current) {
+        if (current.data === data) {
+          return true;
+        } else if (current.data > data) {
+          current = current.left;
+        } else {
+          current = current.right;
+        }
+      }
+      return false;
+    }
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(data) {
+    if (!this.droot) {
+      return null;
+    } else {
+      let current = this.droot;
+
+      while (current) {
+        if (current.data === data) {
+          return current;
+        } else if (current.data > data) {
+          current = current.left;
+        } else {
+          current = current.right;
+        }
+      }
+      return null;
+    }
   }
 
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
 
-  min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
 }
 
 module.exports = {
